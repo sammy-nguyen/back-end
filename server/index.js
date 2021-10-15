@@ -49,7 +49,19 @@ app.get("/api/fortune", (req, res) => {
 
 
 
+app.get("/api/question", (req, res) => {
+  const questions = [
+    "They are called fortune cookies, because each cookie breaks open to reveal a small slip of paper — a fortune — with a prediction for the future, a wise saying, a Chinese word or phrase with its translation, or even a list of lucky numbers.",
+    "The fortune cookie likely arrived in the United States along with Japanese immigrants who came to Hawaii and California between the 1880s and early 1900s, after the Chinese Exclusion Act's expulsion of Chinese workers left a demand for cheap labor. ",
+    "While the origin of the fortune cookie is a little murky, it is strongly believed to have begun in Japan, not China",
+  ];
 
+  // choose random compliment
+  let index = Math.floor(Math.random() * questions.length);
+  let questionFortune = questions[index];
+
+  res.status(200).send(questionFortune);
+});
 
 
 app.listen(4000, () => console.log("Server running on 4000"));
