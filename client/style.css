@@ -1,0 +1,81 @@
+
+#complimentButton{
+  display: block;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: .75em;
+  letter-spacing: 1px;
+  height: 38px;
+  width: 300px;
+  line-height: 38px;
+  overflow: hidden;
+  background: #4dbecf;
+  border-radius: 3px;
+  box-shadow: 0 15px 30px rgba(black,.1);
+  border: 0;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+.select{
+  display: block;
+  margin-top: 20px;
+  text-transform:capitalize;
+  color: darkcyan;
+}
+
+
+#fo-option{
+  margin-top: 10px;
+  color:rgb(12, 12, 12);
+  font-family: cursive;
+  background-color: #4dbecf;
+}
+
+#list{
+display: block;
+margin-top: 20px;
+background-color: turquoise;
+font-size: medium;
+font-family: monospace;
+font-style: italic;
+color: navy;
+}
+
+#fortuneCookie{
+  margin-top: 20px;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: .75em;
+  letter-spacing: 1px;
+  height: 38px;
+  width: 300px;
+  line-height: 38px;
+  overflow: hidden;
+  background: #4dbecf;
+  border-radius: 3px;
+  box-shadow: 0 15px 30px rgba(black,.1);
+  border: 0;
+  cursor: pointer;
+  transition: all .3s ease;
+}
+
+
+
+.hello{
+  position: absolute;
+  transform: rotate(-90deg);
+  left: -80px;
+  bottom:140px;
+
+}
+
+
+.cookie {
+height: 70%;
+position: absolute;
+bottom: 0;
+right: 160px;
+
+
+}
