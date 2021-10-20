@@ -32,6 +32,7 @@ app.get("/api/compliment", (req, res) => {
 //the request for a fortune and producing an appropriate HTTP response.
 
 app.get("/api/fortune", (req, res) => {
+  // choose random compliment
   const fortunes = [
     "A beautiful, smart, and loving person will be coming into your life.",
     "A golden egg of opportunity falls into your lap this month.",
@@ -39,15 +40,11 @@ app.get("/api/fortune", (req, res) => {
     "An inch of time is an inch of gold.",
     "At the touch of love, everyone becomes a poet.",
   ];
-
-  // choose random compliment
   let index = Math.floor(Math.random() * fortunes.length);
   let cookieFortune = fortunes[index];
 
   res.status(200).send(cookieFortune);
 });
-
-
 
 app.get("/api/question", (req, res) => {
   const questions = [
@@ -63,5 +60,17 @@ app.get("/api/question", (req, res) => {
   res.status(200).send(questionFortune);
 });
 
+const fortuneList = [];
+
+app.post("/api/fortune-list", (req, res) => {
+
+  fortuneList.push(req.body.fName);
+  res.status(200).send(req.body.fName);
+});
+
+app.delete("/api/remove/fortune/", (req, res) => {
+  fortuneList.splice(fortuneList.length - 1, 1);
+  res.status(200).send("successful remove");
+});
 
 app.listen(4000, () => console.log("Server running on 4000"));

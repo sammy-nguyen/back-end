@@ -1,82 +1,41 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel = "stylesheet" href = "style.css">
+    <link rel="stylesheet" href="style.css" />
     <title>Back End Assessment</title>
   </head>
   <body class="container">
     <button id="complimentButton">Get a compliment</button>
 
-    <div class="hello">
-      <a href="https://www.facebook.com/cookie.page/">FACEBOOK</a>
-      <a href="https://www.instagram.com/fancyfortunecookies/?hl=en">INSTAGRAM</a>
-      <a href="https://twitter.com/wisest_cookie?lang=en">TWITTER</a>
-    </div>
-
-
-    <button id = "fortuneCookie">Click here to see your fortune</button>
+    <button id="fortuneCookie">Click here to see your fortune</button>
 
     <button id="question">Cookie fortune stories</button>
 
-    <img src="download.jpeg" class="cookie">
-
-
-
-
-
-
-
-
-    <label class = "select" >What is your favorite fortune cookie fortunes? Choose one</label>
-    <select name = "fortunes" id="fo-option">
-
-      <option value="1">A friend is a present you give yourself.</option>
-      <option value="2">All your hard work will soon pay off.</option>
-      <option value="3">All the effort you are making will ultimately pay off.</option>
-      <option value="4">Believe in yourself and others will too.</option>
-      <option value="5">Carve your name on your heart and not on marble.</option>
-      <option value="6">Determination is what you need now</option>
-    </select>
-
-
-
-
-
-
-
-
-
-
-
     <form action="https://joshmadison.com/2008/04/20/fortune-cookie-fortunes/">
-      <button id = "list" type="submit">List of fortune cookie fortunes</button>
+      <button id="list" type="submit">List of fortune cookie fortunes</button>
     </form>
 
-      <h1>My Favorite Fortune of The Day</h1>
-      <p>"All will go well with your new project."</p>
+    <h1>My Favorite Fortune of The Day</h1>
+    <p>"All will go well with your new project."</p>
 
-
-
-
-
+    <main>
+      <h1>Fortune List</h1>
+      <section id="fortune-wrapper">
+        <input
+          id="fortune-input"
+          placeholder="Add your favorite fortune here "
+        />
+        <button id="add-fortune">Add</button>
+        <button id="remove-fortune">Remove Last Fortune</button>
+      </section>
+      <ul></ul>
+    </main>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       document.getElementById("complimentButton").onclick = function () {
-        axios.get("http://localhost:4000/api/compliment/")
-            .then(function (response) {
-              const data = response.data;
-              alert(data);
-            });
-      };
-    </script>
-
-
-
-
-    <script>
-      document.getElementById("fortuneCookie").onclick = function () {
-        axios.get("http://localhost:4000/api/fortune/")
+        axios
+          .get("http://localhost:4000/api/compliment/")
           .then(function (response) {
             const data = response.data;
             alert(data);
@@ -84,11 +43,22 @@
       };
     </script>
 
+    <script>
+      document.getElementById("fortuneCookie").onclick = function () {
+        axios
+          .get("http://localhost:4000/api/fortune/")
+          .then(function (response) {
+            const data = response.data;
+            alert(data);
+          });
+      };
+    </script>
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
       document.getElementById("question").onclick = function () {
-        axios.get("http://localhost:4000/api/question/")
+        axios
+          .get("http://localhost:4000/api/question/")
           .then(function (response) {
             const data = response.data;
             alert(data);
@@ -96,5 +66,33 @@
       };
     </script>
 
+    <script>
+      document.getElementById("add-fortune").onclick = function () {
+        const inputVal = document.getElementById("fortune-input").value;
+        axios
+          .post("http://localhost:4000/api/fortune-list", { fName: inputVal })
+          .then(function (response) {
+            const fName = response.data;
+            const li = document.createElement("li");
+            li.textContent = fName;
+            const wrapper = document.getElementById("fortune-wrapper");
+            wrapper.appendChild(li);
+          });
+      };
+
+      document.getElementById("remove-fortune").onclick = function () {
+        const inputVal = document.getElementById("fortune-input").value;
+        axios
+          .delete("http://localhost:4000/api/remove/fortune/", {
+            fName: inputVal,
+          })
+          .then(function (response) {
+            const lis = document.getElementsByTagName("li");
+            lis[lis.length - 1].remove();
+          });
+      };
+    </script>
+
+    <script src="./index.js"></script>
   </body>
 </html>
